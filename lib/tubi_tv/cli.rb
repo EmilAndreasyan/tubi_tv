@@ -1,6 +1,12 @@
 class TubiTv::CLI
-    def initialize(name)
-        @name = name
+    # extend TubiTv::ClassMethods
+    # include TubiTv::InstanceMethods
+
+    @@all = []
+
+    def initialize
+        super
+
     end
 
     def call

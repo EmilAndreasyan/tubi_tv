@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
-require_relative '../lib/tubi_tv'
+require_relative "../lib/tubi_tv"
 
 
-TubiTv::CLI.new.call
+TubiTv::Scraper.scrape # class method
+# TubiTv::CLI.new.call # instance method
+#TubiTv::CLI.scrape # instance method
