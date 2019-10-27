@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://tubitv.com/"
   spec.license       = "MIT"
 
-  spec.metadata["allowed_push_host"] = "TODO: Set to 'https://tubitv.com/'"
+  spec.metadata["allowed_push_host"] = "https://tubitv.com/"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/EmilAndreasyan/tubi_tv.git"
@@ -31,5 +31,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "pry"
+  spec.add_development_dependency 'colorize', '~> 0.8.1'
   spec.add_dependency "nokogiri"
 end

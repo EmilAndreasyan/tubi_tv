@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-
 require "bundler/setup"
 require "tubi_tv"
 
@@ -12,3 +11,5 @@ require "tubi_tv"
 
 require "irb"
 IRB.start(__FILE__)
+
+

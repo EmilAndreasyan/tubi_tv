@@ -1,3 +1,0 @@
-class TubiTv::Movie
-    
-end
