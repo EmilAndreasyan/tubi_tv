@@ -1,5 +1,6 @@
 require_relative "./tubi_tv/version"
 require_relative "./tubi_tv/cli"
+require_relative "./tubi_tv/description"
 require_relative "./tubi_tv/scraper"
 require_relative "./tubi_tv/movies"
 # require_relative "./tubi_tv/event"

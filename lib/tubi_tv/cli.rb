@@ -1,10 +1,11 @@
-class TubiTv::CLI  #TubiTv is a module
+class TubiTv::CLI  #TubiTv is a module name
 
     def call
         puts ColorizedString["\nWelcome to TubiTv! Here you can find movies matching your mood!\n"].colorize(:color => :cyan, :background => :white)
         get_movies
         list_movies
-        #get_user_movie
+        get_user_movie
+        #filter_by_year(@input)
     end
 
     def get_movies
@@ -17,29 +18,51 @@ class TubiTv::CLI  #TubiTv is a module
     end
 
     def get_user_movie
+        puts "Which Movie are you looking for?".colorize(:green)
         @input = gets.strip.downcase # takes user's input
         find_by_title(@input) if valid_input(@input.to_s, @movies) # calls find_by_title methos with user's input as argument
        #show_movies(@input)
     end
 
     def find_by_title(input)
-        @movies.find do |movie|
-            if movie.title == input
-            puts input.capitalize.colorize(:cyan)
+        if @movies.find do |movie|
+            movie.title.downcase == input
+        end
+        puts "#{input}".capitalize.colorize(:cyan)
+        puts "we have the movie you're looking for!"
+        TubiTv::Scraper.scrape_description
+        @description = TubiTv::Description.all
         else
             puts "no such movie"
-            end
         end
-
     end
 
     def valid_input(input, data)
         # find if the input matches to any of @movies title
-        input == data.each do |movie|
-            movie.title
+        data.select do |movie|
+            movie.title == input
         end
     end
 
+
+    def filter_by_year(input)
+        year = @movies.select do |movie|
+            movie.year.split(/\(|\)/)[1].to_i >= input.to_i # \look for ( |or \look for ) /\(|\)/
+        end
+        year.each {|num| puts num.title}
+    end
+
+    def filter_by_genre(input)
+        @movies.select do |movie|
+            movie.genre == input
+        end
+    end
+
+    def filter_by_year_and_genre
+        filter_by_year(input) && filter_by_genre(input)
+    end
+
+    
     # def show_movies(input)
 
     #    movie = @movies[input.to_i]
@@ -51,7 +74,9 @@ class TubiTv::CLI  #TubiTv is a module
         @movies.filter {|movie| movie.duration.to_i >= @input.to_i}
     end
 
-
+    def get_description
+        TubiTv::Description.add_to_movies
+    end
 
     # def self.reset_all
     #     TubiTv::Movies.all.clear

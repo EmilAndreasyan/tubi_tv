@@ -4,7 +4,6 @@ require_relative "../lib/tubi_tv" # = require "./lib/tubi_tv"
 
 #TubiTv::Scraper.scrape # class method
 TubiTv::CLI.new.call # instance method with new
-#TubiTv::CLI.new.find_by_title("shutter island")
 
 #TubiTv::Movies.all
 #TubiTv::CLI.find_by_name("hello")

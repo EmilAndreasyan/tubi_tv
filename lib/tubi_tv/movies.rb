@@ -1,21 +1,17 @@
 class TubiTv::Movies
-    attr_accessor :film, :title, :duration, :year, :genre
-    attr_writer :events
+    attr_accessor :title, :duration, :year, :genre
 
     @@all = []
-    def initialize(film, title, duration, year, genre)
-        @film = film
-        @title = title
-        @duration = duration
-        @year = year
-        @genre = genre
-        # @title = :title
-        # @duration = :duration
+    def initialize(movies_hash)
+        movies_hash.each do |key, value|
+            self.send("#{key}=", value)
+        end
+        descriptions = []
         @@all << self
     end
 
     def self.all
-        @@all
+        @@all.uniq
     end
 
 
@@ -32,6 +28,7 @@ class TubiTv::Movies
     # def get_events
     #     EdenEvents::Scraper.scrape_events(self)  if @events.empty
     # end
+    
 
     # def self.all
     #     EdenEvents::Scraper.scrape_months if @@all.empty?
