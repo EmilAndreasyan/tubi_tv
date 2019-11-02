@@ -6,7 +6,6 @@ class TubiTv::Description
         @desc = desc
         add_to_movies
         @@all << self
-        binding.pry
     end
 
     def self.all

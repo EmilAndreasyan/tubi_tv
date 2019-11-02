@@ -5,11 +5,10 @@ class TubiTv::Scraper
         @doc = Nokogiri::HTML(open(@site))
         @container = @doc.css(".Col.Col--4.Col--lg-3.Col--xl-1-5.Col--xxl-2")
         @container.each do |movie|
-        #binding.pry
-        title = movie.css("div.JB9zq h3").text
-        duration = movie.css("div.yPcUu").text
-        year = movie.css("div._3BhXb").text
-        genre = movie.css("div.RmVOo").text
+        title = movie.css(".JB9zq h3").text
+        duration = movie.css(".yPcUu").text
+        year = movie.css("._3BhXb").text
+        genre = movie.css(".RmVOo").text
         movies_hash = {
             :title => title,
             :duration => duration,
@@ -19,22 +18,6 @@ class TubiTv::Scraper
         TubiTv::Movies.new(movies_hash)
     end
     end
-
-    def self.scrape_description
-        binding.pry
-        @doc.each do |movie|
-            desc = movie.css("._1_hc6").text
-            TubiTv::Description(desc)
-        end
-    end
-    # def self.scrape_events(month)
-    #     EdenEvents::Event.new('cool event', month)
-    #     EdenEvents::Event.new('uncool event', month)
-    # end
-
-#use hash
-# input = gets.strip.downcase
-
 end
 
 
