@@ -3,12 +3,14 @@ class TubiTv::CLI  #TubiTv is a module name
     def call
         puts ColorizedString["\nWelcome to TubiTv! What would you like to do?\n"].colorize(:color => :cyan, :background => :white)
         get_movies # this method should be put first, to initiate scraping and so that @movies called by it is recognizable
-        puts "if you want to list all the movies, type 1"
-        puts "if you want to filter movies by year, type 2"
-        puts "if you want to filter movies by year range, type 3"
-        puts "if you want to filter movies by genre, type 4"
-        puts "if you want to filter movies by both genre and year, type 5"
-        puts "if you want to find movies by its title, type 6"
+        puts <<-DOC.strip
+            1. If you want to list all the movies
+            2. If you want to filter movies by year
+            3. If you want to filter movies by year range
+            4. If you want to filter movies by genre
+            5. If you want to filter movies by both genre and year
+            6. If you want to find movies by its title
+        DOC
         @input = gets.strip.downcase.to_i
         options(@input)
         # puts String.colors
